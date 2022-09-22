@@ -1,0 +1,5 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* font imports */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;1000&display=swap');
