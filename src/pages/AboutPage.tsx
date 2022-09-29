@@ -1,8 +1,6 @@
-import React from "react";
-
 function AboutPage() {
   return (
-    <div className="flex flex-col justify-center place-items-center h-screen md:h-auto font-nunito">
+    <div className="flex flex-col justify-center place-items-center h-screen md:h-auto font-nunito pb-4">
       <p className="text-sm text-gray-700">About us</p>
       <img
         className="w-64 h-64 shadow-md my-20"
@@ -26,7 +24,7 @@ function AboutPage() {
       </p>
       <br />
       <p className="text-xs text-orange-400">Made with love by SJ Moraga</p>
-      <p className="text-xs">React TS | Tailwind | HeadlessUI | spoonacularapi</p>
+      <p className="text-xs">React | Tailwind | HeadlessUI | spoonacularapi</p>
     </div>
   );
 }

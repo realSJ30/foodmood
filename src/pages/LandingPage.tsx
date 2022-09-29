@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
-// import food from "../assets/food.jpg";
+import { useEffect, useState } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 function LandingPage(props: any) {
   const { setOpenCart } = props;
@@ -18,7 +19,7 @@ function LandingPage(props: any) {
   }, [count]);
 
   return (
-    <div className="flex flex-col md:flex-row h-screen md:h-auto overflow-hidden md:overflow-visible">
+    <div className="flex flex-col md:flex-row h-screen md:h-auto overflow-hidden md:overflow-visible relative">
       <div className="flex flex-1 h-full flex-col font-nunito relative">
         <div className="max-w-[80%] lg:w-[65%] xl:w-[70%] mx-auto md:mx-0 text-center md:text-justify mt-20 md:mt-40 z-10">
           <h1 className="font-bold text-4xl lg:text-5xl xl:text-6xl">
@@ -95,12 +96,18 @@ function LandingPage(props: any) {
           alt="FoodMood"
         />
       </div>
-      <div className="hidden md:flex flex-1 h-full flex-col relative">
-        <img
+      <div className="hidden md:flex flex-1 h-full flex-col relative z-10">
+        <LazyLoadImage
+          effect="blur"
           className="lg:h-[500px] lg:w-[500px] xl:h-[580px] xl:w-[580px] rounded-full absolute -left-10 top-8 lg:top-12 shadow-lg"
           src={require("../assets/food.jpg")}
+          placeholderSrc={require("../assets/food.jpg")}
           alt="FoodMood"
         />
+      </div>
+      {/* blur div */}
+      <div className="bg-orange-200 absolute h-32 -bottom-[35%] inset-x-0 w-full opacity-25 blur-2xl z-0">
+        s
       </div>
     </div>
   );
