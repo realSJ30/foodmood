@@ -1,5 +1,6 @@
-import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
+import { Fragment } from "react";
+import { Link } from "react-router-dom";
 
 function Drawer(props: any) {
   const { openDrawer, setOpenDrawer, setOpenCart } = props;
@@ -7,7 +8,6 @@ function Drawer(props: any) {
   const handleCart = () => {
     setOpenDrawer(false);
     setOpenCart(true);
-    console.log('open')
   };
   return (
     <Transition.Root show={openDrawer} as={Fragment}>
@@ -79,7 +79,7 @@ function Drawer(props: any) {
                         Menu
                       </Dialog.Title>
                       <button
-                        onClick={()=>(handleCart())}
+                        onClick={() => handleCart()}
                         className="relative group cursor-pointer"
                       >
                         <svg
@@ -105,13 +105,25 @@ function Drawer(props: any) {
                       <div className="flex flex-col">
                         <ul className="flex flex-col md:hidden font-semibold justify-between text-center items-center mx-20 gap-10 text-gray-600">
                           <li className="flex-1 hover:text-black active:text-black cursor-pointer">
-                            Home
+                            <Link to={"/"} onClick={() => setOpenDrawer(false)}>
+                              Home
+                            </Link>
                           </li>
                           <li className="flex-1 hover:text-black active:text-black cursor-pointer">
-                            Menu
+                            <Link
+                              to={"/menu"}
+                              onClick={() => setOpenDrawer(false)}
+                            >
+                              Menu
+                            </Link>
                           </li>
                           <li className="flex-1 hover:text-black active:text-black cursor-pointer">
-                            Categories
+                            <Link
+                              to={"/about"}
+                              onClick={() => setOpenDrawer(false)}
+                            >
+                              About
+                            </Link>
                           </li>
                         </ul>
                         <div className="flex flex-col md:hidden items-center gap-4 justify-end mt-6">

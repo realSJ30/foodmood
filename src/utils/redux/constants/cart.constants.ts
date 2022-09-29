@@ -1,0 +1,6 @@
+export const CartConstants = {
+    FETCH_CART_ITEMS: "FETCH_CART_ITEMS",
+    ADD_ITEM_TO_CART: "ADD_ITEM_TO_CART",
+    REMOVE_ITEM_TO_CART: "REMOVE_ITEM_TO_CART",
+  };
+  

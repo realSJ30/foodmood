@@ -1,24 +1,17 @@
-import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
+import { Fragment } from "react";
+import { useCart } from "react-use-cart";
 import CartItem from "./CartItem";
-import { IFood } from "../../interface/food.interface";
 
 function Cart(props: any) {
   const { openCart, setOpenCart } = props;
-  const [foods, setFoods] = useState<IFood[]>([
-    {
-      id: 1,
-      name: "Premium Ceasar Salad",
-      description: "vegetables, salad, green.",
-      price: "125.5",
-    },
-    {
-      id: 2,
-      name: "Large Premium Ceasar Salad",
-      description: "vegetables, salad, green.",
-      price: "155.5",
-    },
-  ]);
+  const { items: foods, cartTotal, isEmpty } = useCart();
+  const shipping = Math.floor(Math.random() * 100);
+
+  const getTotal = () => {
+    return cartTotal + shipping;
+  };
+
   return (
     <Transition.Root show={openCart} as={Fragment}>
       <Dialog as="div" className="relative z-10 block" onClose={setOpenCart}>
@@ -85,39 +78,46 @@ function Cart(props: any) {
                         Orders
                       </Dialog.Title>
                     </div>
-                    <div className="flex flex-col gap-4 mt-6 px-4 sm:px-6 my-4">
+                    <div className="flex flex-col gap-4 mt-6 px-4 sm:px-6 my-4 max-h-[50%] overflow-auto">
                       {/* Replace with your content */}
-                      {foods.map((food: IFood) => (
-                        <CartItem
-                          id={food.id}
-                          key={food.id}
-                          description={food.description}
-                          name={food.name}
-                          price={food.price}
-                        />
-                      ))}
+                      {!isEmpty ? (
+                        foods.map((food: any, indx: number) => (
+                          <CartItem food={food} key={indx} />
+                        ))
+                      ) : (
+                        <h1 className="text-center text-gray-400 border-dashed border border-gray-400 p-4 rounded-md">
+                          Cart is empty
+                        </h1>
+                      )}
                       {/* /End replace */}
                     </div>
                     <hr className="m-6" />
                     <div className="flex flex-col gap-4 items-center px-4 sm:px-6 ">
                       <div className="flex justify-between items center w-full">
                         <h1 className="text-gray-400">Subtotal</h1>
-                        <p className="font-semibold">$250.10</p>
+                        <p className="font-semibold">${cartTotal.toFixed(2)}</p>
                       </div>
                       <div className="flex justify-between items center w-full">
                         <h1 className="text-gray-400">Shipping</h1>
-                        <p className="font-semibold">$80</p>
+                        <p className="font-semibold">${shipping}</p>
                       </div>
                     </div>
                     <hr className="m-6" />
                     <div className="items-center px-4 sm:px-6 flex-1">
                       <div className="flex justify-between items center w-full">
                         <h1 className="font-semibold">Total</h1>
-                        <p className="font-bold text-lg">$330.10</p>
+                        <p className="font-bold text-lg">
+                          ${getTotal().toFixed(2)}
+                        </p>
                       </div>
-                     
                     </div>
-                    <button className="bg-orange-400 text-white p-2 mx-4 rounded-lg font-semibold" onClick={()=>setOpenCart(false)}>
+                    <button
+                      className="bg-orange-400 text-white p-2 mx-4 rounded-lg font-semibold"
+                      onClick={() => {
+                        console.log(foods);
+                        // setOpenCart(false)
+                      }}
+                    >
                       Place order
                     </button>
                   </div>
