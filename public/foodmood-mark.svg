@@ -1,0 +1,36 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="72" y1="56" x2="440" y2="456" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#244C36" />
+      <stop offset="1" stop-color="#13291A" />
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(176 144) rotate(44.12) scale(264.335)">
+      <stop stop-color="#3B7251" stop-opacity="0.7" />
+      <stop offset="1" stop-color="#3B7251" stop-opacity="0" />
+    </radialGradient>
+    <clipPath id="icon-mask">
+      <rect x="32" y="32" width="448" height="448" rx="132" />
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#icon-mask)">
+    <rect x="32" y="32" width="448" height="448" rx="132" fill="url(#bg)" />
+    <rect x="32" y="32" width="448" height="448" rx="132" fill="url(#glow)" />
+  </g>
+
+  <g>
+    <path d="M366 118C383.821 118 398 128.518 398 143C398 163.6 376.739 185.512 336.248 198.273C345.647 158.326 356.978 118 366 118Z" fill="#FFB34D" />
+    <path d="M341.193 196.26C350.492 170.456 365.421 154.597 386 144" stroke="#FFE9CA" stroke-width="12" stroke-linecap="round" />
+  </g>
+
+  <text
+    x="256"
+    y="322"
+    text-anchor="middle"
+    fill="#FFF4E6"
+    font-size="232"
+    font-weight="800"
+    font-family="Avenir Next, Arial Black, Helvetica, sans-serif"
+    letter-spacing="-20"
+  >FM</text>
+</svg>
