@@ -3,6 +3,7 @@ import { connect, useSelector } from "react-redux";
 import FoodDetailsModal from "../components/menu/FoodDetailsModal";
 import MenuList from "../components/menu/MenuList";
 import { fetchFoodAction } from "../utils/redux/actions/food.action";
+import emptyImage from "../assets/empty.png";
 
 function MenuPage(props: any) {
   const { fetchFoodAction } = props;
@@ -16,8 +17,8 @@ function MenuPage(props: any) {
   };
 
   useEffect(() => {
-    fetchFoodAction(search, resultCount);
-  }, []);
+    fetchFoodAction("a", resultCount);
+  }, [fetchFoodAction, resultCount]);
 
   return (
     <div className="flex flex-col md:flex-row h-screen md:h-auto">
@@ -27,7 +28,7 @@ function MenuPage(props: any) {
           <div className="w-full mx-auto md:mx-0 flex flex-col items-center text-center mt-16 z-10">
             <img
               className="w-64 h-60 mt-12"
-              src={require("../assets/empty.png")}
+              src={emptyImage}
               alt="Empty cart"
             />
             <h1 className="text-gray-400">

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import 'react-lazy-load-image-component/src/effects/blur.css';
+import "react-lazy-load-image-component/src/effects/blur.css";
+import heroImage from "../assets/food.jpg";
 
 function LandingPage(props: any) {
   const { setOpenCart } = props;
@@ -92,7 +93,7 @@ function LandingPage(props: any) {
         </div>
         <img
           className="block md:hidden rounded-full absolute -bottom-[10rem] sm:-bottom-[26rem] shadow-lg rotate-90 opacity-70"
-          src={require("../assets/food.jpg")}
+          src={heroImage}
           alt="FoodMood"
         />
       </div>
@@ -100,8 +101,8 @@ function LandingPage(props: any) {
         <LazyLoadImage
           effect="blur"
           className="lg:h-[500px] lg:w-[500px] xl:h-[580px] xl:w-[580px] rounded-full absolute -left-10 top-8 lg:top-12 shadow-lg"
-          src={require("../assets/food.jpg")}
-          placeholderSrc={require("../assets/food.jpg")}
+          src={heroImage}
+          placeholderSrc={heroImage}
           alt="FoodMood"
         />
       </div>

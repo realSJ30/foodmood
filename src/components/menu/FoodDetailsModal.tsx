@@ -5,11 +5,12 @@ import { connect, useSelector } from "react-redux";
 import { useCart } from "react-use-cart";
 import { IFoodDetail } from "../../interface/food.interface";
 import { removeFoodDetails } from "../../utils/redux/actions/food.action";
+import fallbackFoodImage from "../../assets/food.jpg";
 
 export const FoodDetailsModal = (props: any) => {
   const { removeFoodDetails } = props;
   const [open, setOpen] = useState(false);
-  const [image, setImage] = useState();
+  const [image, setImage] = useState<string>(fallbackFoodImage);
   const [index, setIndex] = useState(0);
   const [tabs, setTabs] = useState([
     { id: 0, title: "Summary" },
@@ -73,12 +74,8 @@ export const FoodDetailsModal = (props: any) => {
                   <div className="flex flex-col ">
                     <img
                       className="w-full h-64"
-                      src={
-                        Object.keys(foodDetail).length > 0
-                          ? foodDetail.image
-                          : require("../../assets/food.jpg")
-                      }
-                      onError={() => setImage(require("../../assets/food.jpg"))}
+                      src={image || foodDetail.image || fallbackFoodImage}
+                      onError={() => setImage(fallbackFoodImage)}
                       alt="FoodMood"
                     />
                     <div className="flex flex-col p-4">

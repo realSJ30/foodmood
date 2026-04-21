@@ -5,6 +5,7 @@ import { IFood, IFoodDetail } from "../../interface/food.interface";
 import { fetchFoodDetailApi } from "../../utils/api";
 import { addItemToCart } from "../../utils/redux/actions/cart.action";
 import { fetchFoodDetailAction } from "../../utils/redux/actions/food.action";
+import fallbackFoodImage from "../../assets/food.jpg";
 
 interface IMenuCardProps {
   idx: number;
@@ -50,7 +51,7 @@ const MenuCard: React.FC<IMenuCardProps> = (props) => {
         key={idx}
         className="w-32 h-32 rounded-full shadow-md -top-12 absolute z-10"
         src={image ? image : food.image}
-        onError={() => setImage(require("../../assets/food.jpg"))}
+        onError={() => setImage(fallbackFoodImage)}
         alt="FoodMood"
       />
       <h1 className="font-semibold text-lg mb-6">{food.title}</h1>

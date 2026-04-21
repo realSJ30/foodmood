@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const endpoint = process.env.REACT_APP_API_ENDPOINT;
-const apiKey = process.env.REACT_APP_API_KEY;
+const endpoint = import.meta.env.VITE_API_ENDPOINT;
+const apiKey = import.meta.env.VITE_API_KEY;
 
 export const fetchRecipeApi = async (query: string, resultCount: number) => {
   return await axios.get(

@@ -1,10 +1,12 @@
+import heroImage from "../assets/food.jpg";
+
 function AboutPage() {
   return (
     <div className="flex flex-col justify-center place-items-center h-screen md:h-auto font-nunito pb-4">
       <p className="text-sm text-gray-700">About us</p>
       <img
         className="w-64 h-64 shadow-md my-20"
-        src={require("../assets/food.jpg")}
+        src={heroImage}
         alt="FoodMood"
       />
       <p className="text-regular text-gray-700 text-center">
