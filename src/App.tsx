@@ -21,9 +21,11 @@ function App(props: any) {
   
 
   return (
-    <div className="max-w-[880px] lg:max-w-[1080px] xl:container mx-auto p-4 h-screen bg-white relative">
+    <div className="min-h-screen bg-cream-100 relative overflow-x-hidden">
       {loading ? (
-        <SplashScreen />
+        <div className="h-screen w-full">
+          <SplashScreen />
+        </div>
       ) : (
         <Router>
           <Cart openCart={openCart} setOpenCart={setOpenCart} />
@@ -34,12 +36,23 @@ function App(props: any) {
           />
           <Navbar setOpenDrawer={setOpenDrawer} setOpenCart={setOpenCart} />
           <Routes>
+            <Route path="/" element={<LandingPage />} />
             <Route
-              path="/"
-              element={<LandingPage setOpenCart={setOpenCart} />}
+              path="/menu"
+              element={
+                <div className="mx-auto max-w-6xl px-6 pt-8">
+                  <MenuPage />
+                </div>
+              }
             />
-            <Route path="/menu" element={<MenuPage />} />
-            <Route path="/about" element={<AboutPage />} />
+            <Route
+              path="/about"
+              element={
+                <div className="mx-auto max-w-6xl px-6 pt-8">
+                  <AboutPage />
+                </div>
+              }
+            />
           </Routes>
         </Router>
       )}

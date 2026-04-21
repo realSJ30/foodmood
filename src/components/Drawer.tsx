@@ -103,28 +103,17 @@ function Drawer(props: any) {
                     <div className="relative mt-6 flex-1 px-4 sm:px-6">
                       {/* Replace with your content */}
                       <div className="flex flex-col">
-                        <ul className="flex flex-col md:hidden font-semibold justify-between text-center items-center mx-20 gap-10 text-gray-600">
-                          <li className="flex-1 hover:text-black active:text-black cursor-pointer">
-                            <Link to={"/"} onClick={() => setOpenDrawer(false)}>
-                              Home
-                            </Link>
-                          </li>
-                          <li className="flex-1 hover:text-black active:text-black cursor-pointer">
-                            <Link
-                              to={"/menu"}
-                              onClick={() => setOpenDrawer(false)}
-                            >
-                              Menu
-                            </Link>
-                          </li>
-                          <li className="flex-1 hover:text-black active:text-black cursor-pointer">
-                            <Link
-                              to={"/about"}
-                              onClick={() => setOpenDrawer(false)}
-                            >
-                              About
-                            </Link>
-                          </li>
+                        <ul className="flex flex-col md:hidden font-semibold justify-between text-center items-center mx-10 gap-8 text-forest-700">
+                          {["Product", "Recipes", "Categories", "About", "Contact"].map((label, i) => (
+                            <li key={label} className="flex-1 hover:text-orange-400 cursor-pointer">
+                              <Link
+                                to={i === 2 || i === 1 ? "/menu" : i >= 3 ? "/about" : "/"}
+                                onClick={() => setOpenDrawer(false)}
+                              >
+                                {label}
+                              </Link>
+                            </li>
+                          ))}
                         </ul>
                         <div className="flex flex-col md:hidden items-center gap-4 justify-end mt-6">
                           <button className="flex w-full justify-center items-center gap-1 border rounded-2xl border-gray-700 p-2 text-gray-700 hover:text-orange-400 hover:border-orange-400 transition-colors ease-in-out duration-200">
