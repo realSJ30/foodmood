@@ -46,3 +46,27 @@ body,
 /* hide scrollbar but keep scroll */
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* shimmer for skeleton loaders */
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(236, 230, 219, 0.6) 0%,
+    rgba(255, 255, 255, 0.9) 50%,
+    rgba(236, 230, 219, 0.6) 100%
+  );
+  background-size: 800px 100%;
+  animation: shimmer 1.4s linear infinite;
+}
+
+/* pulse ring for splash */
+@keyframes plate-ripple {
+  0%   { transform: scale(0.6); opacity: 0.8; }
+  100% { transform: scale(2); opacity: 0; }
+}
+.animate-ripple { animation: plate-ripple 2.4s ease-out infinite; }

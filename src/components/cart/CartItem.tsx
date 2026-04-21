@@ -1,48 +1,66 @@
-import React from "react";
 import { Item, useCart } from "react-use-cart";
+import fallbackFoodImage from "../../assets/food.jpg";
+import { useState } from "react";
 
-interface ICartItemProps {
+interface CartItemProps {
   food: Item;
 }
 
-const CartItem: React.FC<ICartItemProps> = (props) => {
-  const { food } = props;
-  const { removeItem } = useCart();
+function CartItem({ food }: CartItemProps) {
+  const { removeItem, updateItemQuantity } = useCart();
+  const [img, setImg] = useState<string>(food.image || fallbackFoodImage);
+
   return (
-    <div
-      key={parseInt(food.id)}
-      className="font-nunito flex items-center justify-between"
-    >
+    <div className="flex items-center gap-3 rounded-2xl bg-white p-3 ring-1 ring-black/5 shadow-sm">
       <img
-        className="w-20 h-20 rounded-lg shadow-md"
-        src={food.image}
-        alt="FoodMood"
+        src={img}
+        onError={() => setImg(fallbackFoodImage)}
+        alt={food.title}
+        className="h-16 w-16 shrink-0 rounded-xl object-cover"
       />
-      <div className="flex flex-col flex-1 px-4 gap-0">
-        <h1 className="font-semibold text-sm">{food.title}</h1>
-        <p className="text-xs">{food.sourceName}</p>
-        <span className="text-xs text-gray-400">Quantity: {food.quantity}</span>
+      <div className="flex-1 min-w-0">
+        <h4 className="font-semibold text-sm text-forest-700 truncate">{food.title}</h4>
+        {food.sourceName && (
+          <p className="text-[11px] text-forest-600/60 truncate">{food.sourceName}</p>
+        )}
+        <div className="mt-1 inline-flex items-center rounded-full bg-cream-100 ring-1 ring-black/5">
+          <button
+            onClick={() =>
+              updateItemQuantity(food.id, Math.max(1, (food.quantity ?? 1) - 1))
+            }
+            className="h-6 w-6 grid place-items-center text-forest-600 hover:text-forest-700"
+            aria-label="Decrease quantity"
+          >
+            −
+          </button>
+          <span className="text-xs font-semibold text-forest-700 px-2 min-w-[16px] text-center">
+            {food.quantity ?? 1}
+          </span>
+          <button
+            onClick={() => updateItemQuantity(food.id, (food.quantity ?? 1) + 1)}
+            className="h-6 w-6 grid place-items-center text-forest-600 hover:text-forest-700"
+            aria-label="Increase quantity"
+          >
+            +
+          </button>
+        </div>
       </div>
-      <div className="flex flex-col justify-end items-end">
-        <p className="font-semibold">${food.price}</p>
-        <svg
+      <div className="flex flex-col items-end justify-between h-full gap-2">
+        <button
           onClick={() => removeItem(food.id)}
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth="1.5"
-          stroke="currentColor"
-          className="w-4 h-4 cursor-pointer text-gray-400 hover:text-red-400"
+          aria-label={`Remove ${food.title}`}
+          className="text-forest-600/50 hover:text-rose-500"
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
-          />
-        </svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className="w-4 h-4">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 6l12 12M18 6L6 18" />
+          </svg>
+        </button>
+        <span className="font-semibold text-sm text-forest-700 tabular-nums">
+          ${Number(food.price).toFixed(2)}
+        </span>
       </div>
     </div>
   );
-};
+}
 
 export default CartItem;

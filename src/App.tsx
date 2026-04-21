@@ -23,9 +23,7 @@ function App(props: any) {
   return (
     <div className="min-h-screen bg-cream-100 relative overflow-x-hidden">
       {loading ? (
-        <div className="h-screen w-full">
-          <SplashScreen />
-        </div>
+        <SplashScreen />
       ) : (
         <Router>
           <Cart openCart={openCart} setOpenCart={setOpenCart} />
